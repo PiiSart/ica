@@ -1,0 +1,115 @@
+<div class="container" style="margin-top: 20px">
+  <div class="card border-secondary">
+    <div class="card-header">Kennzahlen</div>
+    <div class="card-body" *ngIf="this.status === 'loaded'">
+      <h6>Teilnehmer gesamt: <span>{{this.kpis.totalNumberOfCompetitors.totalnumberofcompetitors}}</span></h6> <br />
+
+      <h6>Ätestes Auto: </h6>
+      <ul class="list-group small">
+        <li class="list-group-item" *ngFor="let item of this.kpis.topOldestCars">
+          <b>Startnummer:</b> {{item.startNumber}}
+          <b>Kennzeichen:</b> {{item.licensePlate}}
+          <b>Nikname:</b> {{item.nickname}}
+          <b>Baujahr:</b> {{item.buildYear}}
+          <b>Erstzulassung:</b> {{item.registrationDate}}
+        </li>
+      </ul>
+
+      <h6 style="margin-top: 20px">Top PS: </h6>
+      <ul class="list-group small">
+        <li class="list-group-item" *ngFor="let item of this.kpis.topPsCars">
+          <b>Startnummer:</b> {{item.startNumber}}
+          <b>Kennzeichen:</b> {{item.licensePlate}}
+          <b>Nikname:</b> {{item.nickname}}
+          <b>PS:</b> {{item.ps}}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="loader" *ngIf="this.status == 'loading'"></div>
+
+  <div class="row">
+    <div class="col-sm">
+      <div class="card card-margin-top border-secondary" *ngIf="this.status === 'loaded'">
+        <div class="card-header">Anmeldungen pro Event</div>
+        <div class="card-body">
+          <div style="display: block">
+            <canvas baseChart
+                    [data]="this.pieChartEventData"
+                    [labels]="this.pieChartEventLabels"
+                    [chartType]="'pie'"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card card-margin-top border-secondary" *ngIf="this.status === 'loaded'">
+        <div class="card-header">Verteilung Teilnehmer auf Marken</div>
+        <div class="card-body">
+          <div style="display: block">
+            <canvas baseChart
+                    [data]="this.pieChartManufacturerData"
+                    [labels]="this.pieChartManufacturerLabels"
+                    [chartType]="'pie'"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">
+      <div class="card card-margin-top border-secondary" *ngIf="this.status === 'loaded'">
+        <div class="card-header">Anmeldungen pro Event</div>
+        <div class="card-body">
+          <div style="display: block">
+            <canvas baseChart height="300"
+                    [colors]="this.chartColors"
+                    [datasets]="this.barChartEventData"
+                    [labels]="this.barChartEventLabels"
+                    [options]="{scaleShowVerticalLines: true, responsive: true, maintainAspectRatio: false}"
+                    [legend]="false"
+                    [chartType]="'bar'"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm">
+      <div class="card card-margin-top border-secondary" *ngIf="this.status === 'loaded'">
+        <div class="card-header">Verteilung Teilnehmer auf Marken</div>
+        <div class="card-body">
+          <div style="display: block">
+            <canvas baseChart height="300"
+                    [colors]="this.chartColors"
+                    [datasets]="this.barChartManufacturerData"
+                    [labels]="this.barChartManufacturerLabels"
+                    [options]="{scaleShowVerticalLines: true, responsive: true, maintainAspectRatio: false}"
+                    [legend]="false"
+                    [chartType]="'bar'"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

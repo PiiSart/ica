@@ -1,0 +1,312 @@
+<div class="container title">
+  <h3>Einstellungen</h3>
+</div>
+
+<!-- Events -->
+
+<div class="container">
+  <div class="card border-secondary">
+    <div class="card-header">
+      <h5>Events <span class="badge badge-info">{{this.events.length}}</span></h5>
+    </div>
+
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Neuen Event anlegen</h6>
+      <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Bezeichnung</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="this.event.event" name="category" required>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary" [disabled]="!this.event.event" (click)="this.addEvent()">Hinzufügen</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="this.collapseEvents()">
+            <span *ngIf="!this.eventsCollapsed">Events einblenden</span>
+            <span *ngIf="this.eventsCollapsed">Events ausblenden</span>
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-sm table-responsive-sm table-striped" *ngIf="this.eventsCollapsed" style="margin-top: 20px">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Bezeichnung</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of this.events">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.event}}</td>
+          <td style="text-align: right">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#changeEvent" (click)="this.setEventToChange(item)">Ändern</button>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- Bewertungskriterien -->
+
+<div class="container" style="margin-top: 20px">
+  <div class="card border-secondary">
+    <div class="card-header">
+      <h5>Bewertungskategorien <span class="badge badge-info">{{this.categories.length}}</span></h5>
+    </div>
+
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Neue Kategorie anlegen</h6>
+      <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Bezeichnung</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="this.category.category" name="category" required>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary" [disabled]="!this.category.category" (click)="this.addCategory()">Hinzufügen</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="this.collapseCategories()">
+            <span *ngIf="!this.categoriesCollapsed">Kategorien einblenden</span>
+            <span *ngIf="this.categoriesCollapsed">Kategorien ausblenden</span>
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-sm table-responsive-sm table-striped" *ngIf="this.categoriesCollapsed" style="margin-top: 20px">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Bezeichnung</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of this.categories">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.category}}</td>
+          <td style="text-align: right">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#changeCategory" (click)="this.setCategoryToChange(item)">Ändern</button>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- Subcatorien -->
+<div class="container" style="margin-top: 20px">
+  <div class="card border-secondary">
+    <div class="card-header">
+      <h5>Unterkategorien <span class="badge badge-info">{{this.subcategories.length}}</span></h5>
+    </div>
+
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Neue Subkategorie anlegen</h6>
+      <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Bezeichnung</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="this.subcategory.subcategory" name="subcategory" required>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary" [disabled]="!this.subcategory.subcategory" (click)="this.addSubcategory()">Hinzufügen</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="this.collapseSubcategories()">
+            <span *ngIf="!this.subcategoriesCollapsed">Subkategorien einblenden</span>
+            <span *ngIf="this.subcategoriesCollapsed">Subkategorien ausblenden</span>
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-sm table-responsive-sm table-striped" *ngIf="this.subcategoriesCollapsed" style="margin-top: 20px">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Bezeichnung</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of this.subcategories">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.subcategory}}</td>
+          <td style="text-align: right">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#changeSubcategory" (click)="this.setSubcategoryToChange(item)">Ändern</button>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- Subcategory to Category-->
+<div class="container" style="margin-top: 20px">
+  <div class="card border-secondary">
+    <div class="card-header">
+      <h5>Unterkategorien zu Kategorie zuordnen</h5>
+    </div>
+
+    <div class="card-body">
+      <div class="dropdown">
+        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownCategoriesButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span *ngIf="!this.selectedCategory">wähle Kategory zum Bearbeiten</span>
+          <span *ngIf="this.selectedCategory">{{this.selectedCategory.category}}</span>
+        </button>
+        <span class="alert alert-success" role="alert" style="margin-left: 20px" *ngIf="this.showAlertSubcategoriesToCstegory">Änderungen gespeichert</span>
+        <div class="dropdown-menu" aria-labelledby="dropdownCategoriesButton">
+          <div class="dropdown-item" (click)="selectCategory(null)">keine</div>
+          <div class="dropdown-item" *ngFor="let category of this.categories" (click)="selectCategory(category)">{{category.category}}</div>
+        </div>
+
+        <div class="card" style="margin-top: 20px" *ngIf="this.selectedCategory">
+          <div class="card-header">
+            Unterkategorien
+          </div>
+
+          <div class="card-body">
+            <div class="form-group form-check" *ngFor="let item of this.subcategories">
+              <input type="checkbox" class="form-check-input" [checked]="this.isSubcategoryByCategorySelected(item, this.selectedCategory)" (click)="selectSubcategory(item, this.selectedCategory)">
+              <label class="form-check-label">{{item.subcategory}}</label>
+            </div>
+          </div>
+
+          <div class="card-footer float-right">
+            <div class="float-right">
+              <div class="btn btn-success btn-sm" (click)="this.updateSubcategoriesToCategory()">Speichern</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hersteller -->
+<div class="container" style="margin-top: 20px">
+  <div class="card border-secondary">
+    <div class="card-header">
+      <h5>Hersteller <span class="badge badge-info">{{this.manufacturers.length}}</span></h5>
+    </div>
+
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Neuen Hersteller anlegen</h6>
+      <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Bezeichnung</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="this.manufacturer.label" name="manufacturer" required>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary" [disabled]="!this.manufacturer.label" (click)="this.addManufacturer()">Hinzufügen</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="this.collapseManufacturer()">
+            <span *ngIf="!this.manufacturerCollapsed">Hersteller einblenden</span>
+            <span *ngIf="this.manufacturerCollapsed">Hersteller ausblenden</span>
+          </button>
+        </div>
+      </div>
+
+      <table class="table table-sm table-responsive-sm table-striped" *ngIf="this.manufacturerCollapsed" style="margin-top: 20px">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Bezeichnung</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of this.manufacturers">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.label}}</td>
+          <td class="float-right">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#changeManufacturer" (click)="setManufacturerToChange(item)">Ändern</button>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal change event-->
+<div class="modal fade" id="changeEvent" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Event ändern</h5>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="this.eventToChange.event" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="this.updateEvent()">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal change category-->
+<div class="modal fade" id="changeCategory" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Kategory ändern</h5>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="this.categoryToChange.category" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="this.updateCategory()">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal change subcategory-->
+<div class="modal fade" id="changeSubcategory" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Subkategory ändern</h5>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="this.subcategoryToChange.subcategory" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="this.updateSubcategory()" [disabled]="!this.subcategoryToChange.subcategory">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal change manufacturer-->
+<div class="modal fade" id="changeManufacturer" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Hersteller ändern</h5>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" [(ngModel)]="this.manufacturerToChange.label" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="this.updateManufacturer()">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>

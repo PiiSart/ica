@@ -1,0 +1,38 @@
+<div class="container title">
+  <h3>Auswertung</h3>
+</div>
+
+<div class="container">
+  <div *ngFor="let item of this.evaluation">
+    <div class="card border-secondary" style="margin-bottom: 20px" *ngIf="item.event.id != 8 && item.event.id != 9">
+      <div class="card-header">
+        <h5>{{item.event.event}}</h5>
+      </div>
+
+      <div class="card-body">
+        <span *ngIf="item.results.length == 0">Keine Anmeldungen zu diesem Event!</span>
+        <table class="table table-striped" *ngIf="item.results.length > 0">
+          <thead>
+          <tr>
+            <th scope="col">Startnummer</th>
+            <th scope="col">Kennzeichen</th>
+            <th scope="col">Nickname</th>
+            <th scope="col">Erreichte Punkte</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let result of item.results">
+            <th scope="row">{{result.startnumber}}</th>
+            <td>{{result.licenseplate}}</td>
+            <td>{{result.nickname}}</td>
+            <td>{{result.summe}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
